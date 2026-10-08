@@ -139,11 +139,10 @@
 
     // ALTURA DEL AGUA EN CENTÍMETROS
     // Cambiar este valor para probar
-    let altura = 0;
+    let altura = 200;
 
     function actualizarNivel() {
 
-        let porcentaje;
         let estado;
 
         // Calcular porcentaje
@@ -166,8 +165,6 @@
         // Mostrar altura
         document.getElementById("altura").textContent =
             altura + " cm";
-
-       
 
         // Mostrar porcentaje DENTRO del tanque
         document.getElementById("porcentajeTanque").textContent =
