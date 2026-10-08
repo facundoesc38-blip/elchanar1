@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel de Agua</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #174a5c;
+            margin-bottom: 25px;
+        }
+
+        .tanque {
+            width: 180px;
+            height: 300px;
+            border: 5px solid #174a5c;
+            border-radius: 15px;
+            margin: 0 auto 25px;
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .agua {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0%;
+            background: #2196f3;
+            transition: height 1s ease;
+        }
+
+        .porcentaje {
+            font-size: 42px;
+            font-weight: bold;
+            color: #174a5c;
+        }
+
+        .estado {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .informacion {
+            margin-top: 20px;
+            color: #555;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>💧 Nivel de Agua</h1>
+
+        <div class="tanque">
+            <div class="agua" id="agua"></div>
+        </div>
+
+        <div class="porcentaje" id="porcentaje">
+            0%
+        </div>
+
+        <div class="estado" id="estado">
+            Vacío
+        </div>
+
+        <div class="informacion">
+            Tanque de agua del campo
+        </div>
+
+    </div>
+
+    <script>
+
+        // CAMBIÁ ESTE VALOR PARA PROBAR EL TANQUE
+        let nivel = 68;
+
+        function actualizarNivel() {
+
+            let agua = document.getElementById("agua");
+            let porcentaje = document.getElementById("porcentaje");
+            let estado = document.getElementById("estado");
+
+            // Mostrar porcentaje
+            porcentaje.textContent = nivel + "%";
+
+            // Llenar el tanque
+            agua.style.height = nivel + "%";
+
+            // Determinar el estado
+            if (nivel <= 25) {
+
+                estado.textContent = "🔴 Vacío";
+                estado.style.color = "#e53935";
+
+            } else if (nivel <= 50) {
+
+                estado.textContent = "🟡 Mitad";
+                estado.style.color = "#fbc02d";
+
+            } else if (nivel <= 75) {
+
+                estado.textContent = "🟠 Casi lleno";
+                estado.style.color = "#fb8c00";
+
+            } else {
+
+                estado.textContent = "🟢 Lleno";
+                estado.style.color = "#43a047";
+            }
+        }
+
+        actualizarNivel();
+
+    </script>
+
+</body>
+</html>
