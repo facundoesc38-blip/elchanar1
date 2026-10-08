@@ -19,124 +19,64 @@
             color: #263a24;
         }
 
-        /* ENCABEZADO */
         header {
             background: #355e3b;
             color: white;
-            padding: 25px 15px;
+            padding: 25px;
             text-align: center;
-            border-bottom: 6px solid #8b6f47;
         }
 
         header h1 {
             margin: 0;
-            font-size: 30px;
         }
 
-        header p {
-            margin: 8px 0 0;
-            font-size: 16px;
-        }
-
-        /* CONTENEDOR */
         .contenedor {
-            width: 92%;
+            width: 90%;
             max-width: 500px;
             margin: 30px auto;
             background: #fffdf5;
-            border-radius: 20px;
             padding: 25px;
+            border-radius: 20px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            border: 3px solid #8b6f47;
         }
 
-        .titulo {
-            font-size: 23px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* TANQUE */
         .tanque {
-            width: 190px;
+            width: 180px;
             height: 300px;
-            margin: auto;
+            margin: 20px auto;
             border: 6px solid #555;
-            border-radius: 18px;
-            background: #e8e8e8;
+            border-radius: 15px;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            background: #eee;
         }
 
         .agua {
             position: absolute;
             bottom: 0;
-            left: 0;
             width: 100%;
+            background: #2196f3;
             height: 0%;
-            background: #2387c9;
-            transition: height 1s ease;
+            transition: height 1s;
         }
 
-        /* MARCAS DEL TANQUE */
-        .marca {
-            position: absolute;
-            right: 0;
-            width: 25px;
-            border-top: 2px solid #555;
-            z-index: 2;
+        .dato {
+            margin: 15px 0;
+            padding: 15px;
+            background: #edf2e8;
+            border-radius: 10px;
         }
 
-        .marca25 {
-            bottom: 25%;
-        }
-
-        .marca50 {
-            bottom: 50%;
-        }
-
-        .marca75 {
-            bottom: 75%;
-        }
-
-        /* PORCENTAJE */
-        .porcentaje {
-            margin-top: 25px;
-            font-size: 48px;
+        .valor {
+            font-size: 28px;
             font-weight: bold;
             color: #355e3b;
         }
 
-        /* ESTADO */
         .estado {
-            font-size: 27px;
+            font-size: 25px;
             font-weight: bold;
-            margin-top: 5px;
-        }
-
-        /* INFORMACIÓN */
-        .info {
-            margin-top: 25px;
-            padding: 15px;
-            background: #edf2e8;
-            border-radius: 12px;
-            font-size: 16px;
-        }
-
-        .campo {
-            margin-top: 25px;
-            font-size: 15px;
-            color: #68745f;
-        }
-
-        /* PIE */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #53634d;
-            font-size: 14px;
         }
     </style>
 </head>
@@ -148,104 +88,82 @@
     <p>Monitoreo del tanque del campo</p>
 </header>
 
-
 <div class="contenedor">
 
-    <div class="titulo">
-        💧 Nivel del tanque
-    </div>
+    <h2>💧 Nivel del tanque</h2>
 
     <div class="tanque">
-
-        <div class="marca marca25"></div>
-        <div class="marca marca50"></div>
-        <div class="marca marca75"></div>
-
         <div class="agua" id="agua"></div>
-
     </div>
 
-    <div class="porcentaje" id="porcentaje">
-        0%
+    <div class="dato">
+        <div>Altura del agua</div>
+        <div class="valor" id="altura">0 cm</div>
     </div>
 
-    <div class="estado" id="estado">
-        Vacío
+    <div class="dato">
+        <div>Porcentaje</div>
+        <div class="valor" id="porcentaje">0%</div>
     </div>
 
-    <div class="info">
-        <strong>Estado del tanque</strong>
-        <br>
-        El sistema controla el nivel de agua
-        para saber cuándo es necesario llenarlo.
-    </div>
-
-    <div class="campo">
-        🚜 Sistema de monitoreo rural
+    <div class="dato">
+        <div>Estado</div>
+        <div class="estado" id="estado">MUY BAJO</div>
     </div>
 
 </div>
 
-
-<footer>
-    Control de agua para el campo
-</footer>
-
-
 <script>
 
-    // ===================================
-    // NIVEL DEL TANQUE
-    // ===================================
-
-    // CAMBIÁ ESTE NÚMERO PARA PROBAR
-    let nivel = 68;
+    // ALTURA DEL AGUA EN CENTÍMETROS
+    // Cambiar este valor para probar
+    let altura = 120;
 
 
     function actualizarNivel() {
 
-        let agua = document.getElementById("agua");
-        let porcentaje = document.getElementById("porcentaje");
-        let estado = document.getElementById("estado");
+        let porcentaje;
+        let estado;
 
 
-        // Mostrar porcentaje
-        porcentaje.textContent = nivel + "%";
-
-
-        // Mostrar agua dentro del tanque
-        agua.style.height = nivel + "%";
+        // Calcular porcentaje
+        porcentaje = (altura / 200) * 100;
 
 
         // Determinar estado
-        if (nivel <= 25) {
+        if (altura >= 0 && altura < 50) {
 
-            estado.textContent = "🔴 Vacío";
-            estado.style.color = "#c0392b";
+            estado = "MUY BAJO";
 
-        }
+        } else if (altura >= 50 && altura < 100) {
 
-        else if (nivel <= 50) {
+            estado = "BAJO";
 
-            estado.textContent = "🟡 Mitad";
-            estado.style.color = "#d4a017";
+        } else if (altura >= 100 && altura < 150) {
 
-        }
+            estado = "MEDIO";
 
-        else if (nivel <= 75) {
+        } else if (altura >= 150 && altura <= 200) {
 
-            estado.textContent = "🟠 Casi lleno";
-            estado.style.color = "#d97706";
+            estado = "ALTO";
 
         }
 
-        else {
 
-            estado.textContent = "🟢 Lleno";
-            estado.style.color = "#3f7d3a";
+        // Mostrar datos
+        document.getElementById("altura").textContent =
+            altura + " cm";
 
-        }
+        document.getElementById("porcentaje").textContent =
+            porcentaje.toFixed(0) + "%";
 
+        document.getElementById("estado").textContent =
+            estado;
+
+
+        // Mostrar el nivel de agua en el tanque
+        document.getElementById("agua").style.height =
+            porcentaje + "%";
     }
 
 
