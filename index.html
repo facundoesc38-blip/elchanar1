@@ -139,7 +139,7 @@
 
     // ALTURA DEL AGUA EN CENTÍMETROS
     // Cambiar este valor para probar
-    let altura = 120;
+    let altura = 0;
 
     function actualizarNivel() {
 
@@ -151,7 +151,7 @@
 
         // Determinar estado
         if (altura >= 0 && altura < 50) {
-            estado = "MUY BAJO";
+            estado = "VACIO";
         } 
         else if (altura >= 50 && altura < 100) {
             estado = "BAJO";
