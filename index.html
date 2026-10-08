@@ -55,10 +55,24 @@
         .agua {
             position: absolute;
             bottom: 0;
+            left: 0;
             width: 100%;
             background: #2196f3;
             height: 0%;
             transition: height 1s;
+        }
+
+        /* PORCENTAJE DENTRO DEL TANQUE */
+        .porcentaje-tanque {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            z-index: 2;
+            text-shadow: 2px 2px 4px #333;
         }
 
         .dato {
@@ -93,7 +107,15 @@
     <h2>💧 Nivel del tanque</h2>
 
     <div class="tanque">
+
+        <!-- AGUA -->
         <div class="agua" id="agua"></div>
+
+        <!-- PORCENTAJE DENTRO DEL TANQUE -->
+        <div class="porcentaje-tanque" id="porcentajeTanque">
+            0%
+        </div>
+
     </div>
 
     <div class="dato">
@@ -119,53 +141,48 @@
     // Cambiar este valor para probar
     let altura = 120;
 
-
     function actualizarNivel() {
 
         let porcentaje;
         let estado;
 
-
         // Calcular porcentaje
         porcentaje = (altura / 200) * 100;
 
-
         // Determinar estado
         if (altura >= 0 && altura < 50) {
-
             estado = "MUY BAJO";
-
-        } else if (altura >= 50 && altura < 100) {
-
+        } 
+        else if (altura >= 50 && altura < 100) {
             estado = "BAJO";
-
-        } else if (altura >= 100 && altura < 150) {
-
+        } 
+        else if (altura >= 100 && altura < 150) {
             estado = "MEDIO";
-
-        } else if (altura >= 150 && altura <= 200) {
-
+        } 
+        else if (altura >= 150 && altura <= 200) {
             estado = "ALTO";
-
         }
 
-
-        // Mostrar datos
+        // Mostrar altura
         document.getElementById("altura").textContent =
             altura + " cm";
 
+        // Mostrar porcentaje
         document.getElementById("porcentaje").textContent =
             porcentaje.toFixed(0) + "%";
 
+        // Mostrar porcentaje DENTRO del tanque
+        document.getElementById("porcentajeTanque").textContent =
+            porcentaje.toFixed(0) + "%";
+
+        // Mostrar estado
         document.getElementById("estado").textContent =
             estado;
 
-
-        // Mostrar el nivel de agua en el tanque
+        // Llenar tanque
         document.getElementById("agua").style.height =
             porcentaje + "%";
     }
-
 
     actualizarNivel();
 
