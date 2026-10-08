@@ -124,11 +124,6 @@
     </div>
 
     <div class="dato">
-        <div>Porcentaje</div>
-        <div class="valor" id="porcentaje">0%</div>
-    </div>
-
-    <div class="dato">
         <div>Estado</div>
         <div class="estado" id="estado">MUY BAJO</div>
     </div>
@@ -139,16 +134,18 @@
 
     // ALTURA DEL AGUA EN CENTÍMETROS
     // Cambiar este valor para probar
-    let altura = 200;
+    let altura = 20;
 
     function actualizarNivel() {
 
+        let porcentaje;
         let estado;
 
         // Calcular porcentaje
         porcentaje = (altura / 200) * 100;
 
         // Determinar estado
+        
         if (altura >= 0 && altura < 50) {
             estado = "VACIO";
         } 
